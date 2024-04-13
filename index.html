@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Hello Fronted Masters</h1>
+    <div id="app">
+      <p v-if="message.length % 2 === 0">Even: {{message.toUpperCase()}}</p>
+      <p v-else>Odd: {{message}}</p>
+      <ul v-for="item in listOfNumbers">
+        <li>
+          {{item.name}} - {{item.id}}
+          <ul>
+            <li v-for="number in item.lists">{{number}}</li>
+          </ul>
+        </li>
+      </ul>
+      <hr />
+      <h3>{{counterTitle}}</h3>
+      <p>{{count}}</p>
+      <button @click="incrementCount">Increment Count</button>
+      <div>
+        <label for="incrementAmount">Increment by:</label>
+        <input type="number" v-model="incrementAmount" />
+      </div>
+      {{incrementAmount}}
+    </div>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script>
+      const { createApp } = Vue;
+      const app = createApp({
+        data() {
+          return {
+            counterTitle: "Counter Standard",
+            count: 0,
+            incrementAmount: 5,
+            message: "Hello it works well, Gosh!",
+            listOfNumbers: [
+              { name: 1, id: 32344333433, lists: [1, 2, 3] },
+              { name: 2, id: 5418135135, lists: [1, 2, 3] },
+              { name: 3, id: 32344333433, lists: [1, 2, 3] },
+              { name: 4, id: 32344333433, lists: [1, 2, 3] },
+              { name: 5, id: 32344333433, lists: [1, 2, 3] },
+            ],
+          };
+        },
+        computed: {},
+        methods: {
+          incrementCount() {
+            this.count += this.incrementAmount;
+          },
+        },
+        watch: {
+          count(newValue) {
+            if (newValue == 20) {
+              this.counterTitle += " Long ";
+            } else {
+              return;
+            }
+          },
+        },
+      });
+
+      app.mount("#app");
+    </script>
+  </body>
+</html>
